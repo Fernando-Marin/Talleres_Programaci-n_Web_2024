@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica JQuery</title>
+
+    <style>
+        #miCaja{
+            width: 300px;
+            padding: 20px;
+            background-color: lightblue;
+            color: black;
+            display: none;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+        .boton{
+            padding: 10px;
+            background-color: lightblue;
+            color: black;
+            display: none;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+        .boton:hover{
+            background-color: darkcyan;
+        }
+        form{
+            margin-bottom: 20px;
+        }
+        input{
+            margin-bottom: 10px;
+            display: block;
+            padding: 8px;
+            width: 50%;
+        }
+        .botones{
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+    <Script src="https://code.jquery.com/jquery-3.6.0.min.js">
+    </Script>
+    <body>
+        <h1>Formulario datos personales</h1>
+        <form id="forDatosPersonales">
+            <input type="text" id="Nombre" placeholder="Nombre">
+            <input type="text" id="Apellido" placeholder="Apellido">
+            <input type="text" id="Email" placeholder="Email">
+            <input type="text" id="Edad" placeholder="Edad">
+        </form>
+        <div class="botones">
+            <button id="enviarBtn" class="boton">Enviar</button>
+            <button id="mostrarFormulario" class="boton">Mostrar</button>
+            <button id="ocultarFormularioBtn" class="boton">Ocultar</button>
+            <button id="reset" class="boton">Restablecer</button>
+        </div>
+        <div id="miCaja"></div>
+
+        <script>
+            $(document).ready(function(){
+                $('#mostrarFormularioBtn').click(function(){
+                    $('form').slideDown(500);
+                });
+                $('ocultarFormularioBtn').click(function(){
+                    $('form').slideUp(500);
+                });
+                $('enviarBtn').click(function(){
+                    event.preventDefault();
+
+                var nombre =$('#nombre').val();
+                var apellido = $('#apellido').val();
+                var email =$('#email').val();
+                var edad =$('#edad').val();
+
+                $('miCaja').html(`
+                <h2>Datos Ingresados:</h2>
+                <p><Strong>Nombre:</Strong> ${nombre}</p>
+                <p><Strong>Apellido:</Strong> ${apellido}</p>
+                <p><Strong>Email:</Strong> ${email}</p>
+                <p><Strong>Edad:</Strong> ${edad}</p>
+                `).fadeIn(500);
+            });
+
+                $('#resetBtn').click(function(){
+                    $('formDtaosPersonales')[0].reset();
+                    $('#miCaja').fadeOut(500);
+                })
+            });
+        </script>
+</body>
+</html>
